@@ -26,7 +26,8 @@ def data_upload(database,container_name,file_name,sheet_name,header=0,usecols=No
     for item in rec:
         item['id'] = str(uuid.uuid4())
         item['source'] = {'source_system':source_system,'source_identifier':source_identifier}
-        item['language_code'] = lang
+        item['title'] = item['lookup_type']+'_'+item['lookup_code']
+        item['description'] = {'language_code':lang,'title':item['lookup_code']}
         item['isDefault'] = isDefault
         item['isActive'] = isActive
         item['security_group'] = security_group
