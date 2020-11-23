@@ -24,5 +24,24 @@ def uom_upload():
     data_upload.data_upload(database,container_name,file_name,sheet_name,header=header_row,usecols=usecols,rename_cols=rename_cols
                             )
 
+def connectionstyle_upload():
+    dotenv.read_dotenv()
+    endpoint = os.environ['URL']
+    key = os.environ['CREDENTIAL']
+    database_name = os.environ['DATABASE_NAME']
+    container_name = 'lpa-lookup'
+    file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
+    sheet_name ='ConnectionStyle'
+    header_row = 1
+    usecols = ['Rule Logic',
+               'ConnectionStyle']
+    rename_cols = {'Rule Logic': 'lookup_type',
+                   'ConnectionStyle':'lookup_code'}
+    database=data_upload.get_database(endpoint,
+                             key,
+                             database_name)
+    data_upload.data_upload(database,container_name,file_name,sheet_name,header=header_row,usecols=usecols,rename_cols=rename_cols
+                            )
+
 if __name__== '__main__':
-    uom_upload()
+    connectionstyle_upload()
