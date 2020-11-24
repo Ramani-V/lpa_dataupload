@@ -36,9 +36,9 @@ def SealClass_upload():
     container_name = 'lpa-lookup'
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='SealClass'
-    header_row= 4
+    header_row= 1
     lookup_type = 'seal_class'
-    usecols = ['SealClass','Default','Restrictions','World Area']
+    usecols = ['SealClass','Default','Restrictions','World Area','Unnamed: 3']
     lookup_val_column = 'SealClass'
     category_column = 'Unnamed: 3'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions',
@@ -105,7 +105,7 @@ def GasketSurface_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='GasketSurface'
     header_row= 1
-    usecols = ['ConnectionType','Default','Restrictions']
+    usecols = ['ConnectionType','Default','Restrictions','Rule Logic']
     lookup_type = 'gasket_surface'
     lookup_val_column = 'ConnectionType'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -128,7 +128,7 @@ def ConnectionSize_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='ConnectionSize'
     header_row= 1
-    usecols = ['ConnectionSize','Default','Restrictions']
+    usecols = ['ConnectionSize','Default','Restrictions','Rule Logic']
     lookup_type = 'connection_size'
     lookup_val_column = 'ConnectionSize'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -152,7 +152,7 @@ def PressureRating_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='PressureRating'
     header_row= 1
-    usecols = ['PressureRating','Default','Restrictions']
+    usecols = ['PressureRating','Default','Restrictions','Rule Logic']
     lookup_type = 'pressure_rating'
     lookup_val_column = 'PressureRating'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -175,7 +175,7 @@ def ExtensionDiameter_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='ExtensionDiameter'
     header_row= 1
-    usecols = ['ExtensionDiameter','Default','Restrictions']
+    usecols = ['ExtensionDiameter','Default','Restrictions','Rule Logic']
     lookup_type = 'extension_diameter'
     lookup_val_column = 'ExtensionDiameter'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -199,7 +199,7 @@ def ExtensionLength_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='ExtensionLength'
     header_row= 1
-    usecols = ['ExtensionLength','LNomExL (inches)','Default','Restrictions']
+    usecols = ['ExtensionLength','LNomExL (inches)','Default','Restrictions','Rule Logic']
     lookup_type = 'extension_length'
     lookup_val_column = 'ExtensionLength'
     rename_cols = {'LNomExL (inches)':'ExlenValue','Default': 'default', 'Restrictions': 'restrictions'}
@@ -223,7 +223,7 @@ def AddExtensionLength_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='AddExtensionLength'
     header_row= 1
-    usecols = ['AddExtensionLength','LAddExL (inches)','Default','Restrictions']
+    usecols = ['AddExtensionLength','LAddExL (inches)','Default','Restrictions','Rule Logic']
     lookup_type = 'additional_extension_length'
     lookup_val_column = 'AddExtensionLength'
     rename_cols = {'LAddExL (inches)':'AddExlenValue','Default': 'default', 'Restrictions': 'restrictions'}
@@ -246,7 +246,7 @@ def DiaphragmMaterial_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='DiaphragmMaterial'
     header_row= 1
-    usecols = ['DiaphragmMaterial','Tmax','Default','Restrictions']
+    usecols = ['DiaphragmMaterial','Tmax','Default','Restrictions','Rule Logic']
     lookup_type = 'diaphragm_material'
     lookup_val_column = 'DiaphragmMaterial'
     rename_cols = {'Tmax':'max_temp','Default': 'default', 'Restrictions': 'restrictions'}
@@ -269,7 +269,7 @@ def DiaphragmCoating_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='DiaphragmCoating'
     header_row= 1
-    usecols = ['Diaphragm Coating','Default','Restrictions']
+    usecols = ['Diaphragm Coating','Default','Restrictions','Rule Logic']
     lookup_type = 'diaphragm_coating'
     lookup_val_column = 'Diaphragm Coating'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -293,7 +293,7 @@ def FlangeMaterial_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='FlangeMaterial'
     header_row= 1
-    usecols = ['FlangeMaterial','Default','Restrictions']
+    usecols = ['FlangeMaterial','Default','Restrictions','Rule Logic']
     lookup_type = 'flange_material'
     lookup_val_column = 'FlangeMaterial'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -337,7 +337,7 @@ def FlushSizeQty_upload():
     file_name = 'DP Level Product Advisor Logic_MVP_rev7_2020 Oct 5.xlsx'
     sheet_name ='FlushSizeQty'
     header_row= 1
-    usecols = ['FlushSizeQty','Default','Restrictions']
+    usecols = ['FlushSizeQty','Default','Restrictions','Rule Logic']
     lookup_type = 'flush_size_quantity'
     lookup_val_column = 'FlushSizeQty'
     rename_cols = {'Default': 'default', 'Restrictions': 'restrictions'}
@@ -374,12 +374,12 @@ def GasketMaterial_upload():
 
 
 if __name__== '__main__':
-    UOM_upload()
-    SealClass_upload()
-    DiaphragmCompatibility_upload()
-    IndustryStandard_upload()
-    GasketSurface_upload()
-    ConnectionSize_upload()
+    # UOM_upload()
+    # SealClass_upload()
+    # DiaphragmCompatibility_upload()
+    # IndustryStandard_upload()
+    # GasketSurface_upload()
+    # ConnectionSize_upload()
     PressureRating_upload()
     ExtensionDiameter_upload()
     ExtensionLength_upload()

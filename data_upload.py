@@ -20,7 +20,7 @@ def data_upload(database,container_name,file_name,sheet_name,lookup_type,lookup_
 
     df.rename(columns={lookup_val_column:'lookup_value'},inplace=True)
     if category_column:
-        df.rename(columns={category_column:'category'})
+        df.rename(columns={category_column:'category'},inplace=True)
         df['category'].fillna(method='ffill', inplace=True)
     if rename_cols:
         df.rename(columns=rename_cols,inplace=True)
@@ -33,11 +33,11 @@ def data_upload(database,container_name,file_name,sheet_name,lookup_type,lookup_
         item['id'] = str(uuid.uuid4())
         item['source'] = {'source_system':source_system,'source_identifier':source_identifier}
         item['lookup_type'] = lookup_type
-        item['lookup_code'] = item['lookup_type']+'_'+item['id']
-        if 'category' in df.columns:
+        item['lookup_code'] = lookup_type+'_'+item['id']
+        if category_column:
             item['description'] = {'language_code':lang,'category':item['category']}
         else:
-            item['description'] = {'language_code': lang, 'category': item['category']}
+            item['description'] = {'language_code': lang}
         item['isDefault'] = isDefault
         item['isActive'] = isActive
         item['security_group'] = security_group
