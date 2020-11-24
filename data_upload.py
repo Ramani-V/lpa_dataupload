@@ -11,16 +11,19 @@ def get_database(endpoint,key,database_name):
     database = client.get_database_client(database_name)
     return database
 
-def data_upload(database,container_name,file_name,sheet_name,header=0,usecols=None,rename_cols=None,
-               source_system=None,source_identifier=None,lang='en_us',isDefault=False,isActive=True,
+def data_upload(database,container_name,file_name,sheet_name,lookup_type,lookup_val_column,
+                category_column=None,header=0,usecols=None,rename_cols=None,
+                source_system=None,source_identifier=None,lang='en_us',isDefault=False,isActive=True,
                security_group=['Internal','External'],created_by=-1):
 
     df = pd.read_excel(file_name, sheet_name=sheet_name,header=header,usecols=usecols)
 
+    df.rename(columns={lookup_val_column:'lookup_value'},inplace=True)
+    if category_column:
+        df.rename(columns={category_column:'category'})
+        df['category'].fillna(method='ffill', inplace=True)
     if rename_cols:
         df.rename(columns=rename_cols,inplace=True)
-
-    df['lookup_code'].fillna(method='ffill', inplace=True)
 
     df.replace({np.NAN:None},inplace=True)
 
@@ -29,8 +32,12 @@ def data_upload(database,container_name,file_name,sheet_name,header=0,usecols=No
     for item in rec:
         item['id'] = str(uuid.uuid4())
         item['source'] = {'source_system':source_system,'source_identifier':source_identifier}
-        item['title'] = item['lookup_type']+'_'+item['lookup_code']
-        item['description'] = {'language_code':lang,'title':item['lookup_code']}
+        item['lookup_type'] = lookup_type
+        item['lookup_code'] = item['lookup_type']+'_'+item['id']
+        if 'category' in df.columns:
+            item['description'] = {'language_code':lang,'category':item['category']}
+        else:
+            item['description'] = {'language_code': lang, 'category': item['category']}
         item['isDefault'] = isDefault
         item['isActive'] = isActive
         item['security_group'] = security_group
