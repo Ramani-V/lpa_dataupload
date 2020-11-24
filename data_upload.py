@@ -35,7 +35,7 @@ def data_upload(database,container_name,file_name,sheet_name,lookup_type,lookup_
         item['lookup_type'] = lookup_type
         item['lookup_code'] = lookup_type+'_'+item['id']
         if category_column:
-            item['description'] = {'language_code':lang,'category':item['category']}
+            item['description'] = {'language_code':lang,'category':item.pop('category')}
         else:
             item['description'] = {'language_code': lang}
         item['isDefault'] = isDefault
